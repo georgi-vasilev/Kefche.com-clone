@@ -1,10 +1,11 @@
 namespace Kefche
 {
     using System.Reflection;
-    using Kefche.Services.Mapping;
-    using Kefche.Web.Infrastructure;
-    using Kefche.Web.Infrastructure.Extensions;
-    using Kefche.Web.Models;
+    using Hubs;
+    using Services.Mapping;
+    using Web.Infrastructure;
+    using Web.Infrastructure.Extensions;
+    using Web.Models;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -21,12 +22,15 @@ namespace Kefche
         public void ConfigureServices(IServiceCollection services)
         {
             services
+                .AddCors()
                 .AddDatabase(this.Configuration)
                 .AddIdentity()
                 .AddJwtAuthentication(services.GetAppSettings(this.Configuration))
                 .AddAplicationServices()
                 .AddSwagger()
                 .AddApiControllers();
+
+            services.AddSignalR();
 
             // Comment this line if you do not want an developr page exception filter.
             services.AddDatabaseDeveloperPageExceptionFilter();
@@ -55,14 +59,16 @@ namespace Kefche
                 .UseSwaggerUI()
                 .UseRouting()
                 .UseCors(options => options
-                    .AllowAnyOrigin()
+                    .WithOrigins("http://localhost:4200")
                     .AllowAnyHeader()
-                    .AllowAnyMethod())
+                    .AllowAnyMethod()
+                    .AllowCredentials())
                 .UseAuthentication()
                 .UseAuthorization()
                 .UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllers();
+                    endpoints.MapHub<ChatHub>("/signalr");
                 }).ApplyMigrations();
         }
     }
