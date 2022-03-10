@@ -17,7 +17,6 @@ let RegisterComponent = class RegisterComponent {
         this.authService.register(this.registerForm.value);
     }
     get username() {
-        console.log(this.registerForm.value);
         return this.registerForm.get('username');
     }
     get email() {

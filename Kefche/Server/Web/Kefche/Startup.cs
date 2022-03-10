@@ -2,16 +2,16 @@ namespace Kefche
 {
     using System.Reflection;
     using Hubs;
-    using Services.Mapping;
-    using Web.Infrastructure;
-    using Web.Infrastructure.Extensions;
-    using Web.Models;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Services.Mapping;
+    using Web.Infrastructure;
+    using Web.Infrastructure.Extensions;
+    using Web.Models;
 
     public class Startup
     {
@@ -22,7 +22,6 @@ namespace Kefche
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddCors()
                 .AddDatabase(this.Configuration)
                 .AddIdentity()
                 .AddJwtAuthentication(services.GetAppSettings(this.Configuration))
@@ -30,7 +29,7 @@ namespace Kefche
                 .AddSwagger()
                 .AddApiControllers();
 
-            services.AddSignalR();
+            services.AddMessages();
 
             // Comment this line if you do not want an developr page exception filter.
             services.AddDatabaseDeveloperPageExceptionFilter();

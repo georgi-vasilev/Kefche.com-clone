@@ -1,20 +1,4 @@
-﻿{
-  "iisSettings": {
-    "windowsAuthentication": false,
-    "anonymousAuthentication": true,
-    "iisExpress": {
-      "applicationUrl": "http://localhost:41752",
-      "sslPort": 44362
-    }
-  },
-  "profiles": {
-    "IIS Express": {
-      "commandName": "IISExpress",
-      "launchBrowser": true,
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
-    },
+{
     "Kefche": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
@@ -24,5 +8,4 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
-  }
 }

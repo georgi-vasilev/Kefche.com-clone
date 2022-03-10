@@ -1,6 +1,8 @@
-import { AuthService } from '../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-register',
@@ -8,15 +10,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-
   registerForm: FormGroup;
-
-  constructor(private formBuilder: FormBuilder,
-    private authService: AuthService) {
-    this.registerForm = this.formBuilder.group({
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private notificationService: NotificationService,
+    private route: Router) {
+    this.registerForm = this.fb.group({
       'username': ['', Validators.required],
       'email': ['', Validators.required],
-      'password': ['', Validators.required],
+      'password': ['', Validators.required]
     })
   }
 
@@ -24,20 +27,22 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void {
-    this.authService.register(this.registerForm.value);
+    this.authService.register(this.registerForm.value).subscribe(() => {
+      this.notificationService.showSuccess('Successful registration!', 'Registration completed');
+      this.route.navigate(['/login']);
+    })
   }
 
-  get username() {
-    console.log(this.registerForm.value);
-    return this.registerForm.get('username');
+  get username(): AbstractControl | null {
+    return this.registerForm.get('username')
   }
 
-  get email() {
-    return this.registerForm.get('email');
+  get email(): AbstractControl | null {
+    return this.registerForm.get('email')
   }
 
-  get password() {
-    return this.registerForm.get('password');
+  get password(): AbstractControl | null {
+    return this.registerForm.get('password')
   }
 
 }
