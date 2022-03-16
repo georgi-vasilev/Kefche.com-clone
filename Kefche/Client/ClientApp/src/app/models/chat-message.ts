@@ -1,12 +1,12 @@
 export class ChatMessage {
     
     constructor(connectionId: string | null, text: string) {
-        this.connectionId = connectionId;
-        this.text = text;
-        this.dateTime = new Date();
+        this.ConnectionId = connectionId;
+        this.Text = text;
+        this.DateTime = new Date();
     }
 
-    connectionId: string | null;
-    text: string;
-    dateTime: Date;
+    ConnectionId: string | null;
+    Text: string;
+    DateTime: Date;
 }
