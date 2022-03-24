@@ -110,5 +110,10 @@
             => services.AddControllers(options => options
                 .Filters
                 .Add<ModelOrNotFoundActionFilter>());
+
+        public static void AddMessages(this IServiceCollection services)
+            => services
+                    .AddSignalR()
+                    .AddMessagePackProtocol();
     }
 }

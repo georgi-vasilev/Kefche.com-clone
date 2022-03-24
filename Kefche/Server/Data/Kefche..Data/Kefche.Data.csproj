@@ -36,6 +36,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Kefche.Common\Kefche.Common.csproj" />
     <ProjectReference Include="..\Kefche.Data.Common\Kefche.Data.Common.csproj" />
     <ProjectReference Include="..\Kefche.Data.Models\Kefche.Data.Models.csproj" />
   </ItemGroup>

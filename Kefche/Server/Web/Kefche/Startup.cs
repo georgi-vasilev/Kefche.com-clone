@@ -1,16 +1,17 @@
 namespace Kefche
 {
     using System.Reflection;
-    using Kefche.Services.Mapping;
-    using Kefche.Web.Infrastructure;
-    using Kefche.Web.Infrastructure.Extensions;
-    using Kefche.Web.Models;
+    using Hubs;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Services.Mapping;
+    using Web.Infrastructure;
+    using Web.Infrastructure.Extensions;
+    using Web.Models;
 
     public class Startup
     {
@@ -27,6 +28,8 @@ namespace Kefche
                 .AddAplicationServices()
                 .AddSwagger()
                 .AddApiControllers();
+
+            services.AddMessages();
 
             // Comment this line if you do not want an developr page exception filter.
             services.AddDatabaseDeveloperPageExceptionFilter();
@@ -55,14 +58,16 @@ namespace Kefche
                 .UseSwaggerUI()
                 .UseRouting()
                 .UseCors(options => options
-                    .AllowAnyOrigin()
+                    .WithOrigins("http://localhost:4200")
                     .AllowAnyHeader()
-                    .AllowAnyMethod())
+                    .AllowAnyMethod()
+                    .AllowCredentials())
                 .UseAuthentication()
                 .UseAuthorization()
                 .UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllers();
+                    endpoints.MapHub<ChatHub>("/signalr");
                 }).ApplyMigrations();
         }
     }

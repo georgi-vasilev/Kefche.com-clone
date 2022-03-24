@@ -4,10 +4,10 @@ import { NgModule } from '@angular/core';
 
 @NgModule({
   declarations: [
-    NavigationComponent
+    NavigationComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class CoreModule { }

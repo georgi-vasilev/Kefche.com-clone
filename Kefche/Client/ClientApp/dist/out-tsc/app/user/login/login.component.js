@@ -18,7 +18,6 @@ let LoginComponent = class LoginComponent {
         });
     }
     get username() {
-        console.log(this.loginForm.value);
         return this.loginForm.get('username');
     }
     get password() {
