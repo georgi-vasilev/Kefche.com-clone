@@ -21,10 +21,13 @@ export class AuthService {
     return this.http.post(this.registerPath, data);
   }
 
+  clearToken(){
+    localStorage.removeItem('token');
+  }
+
   saveToken(token: string) {
     localStorage.setItem('token', token);
   }
-
   getToken() {
     return localStorage.getItem('token');
   }
