@@ -3,18 +3,19 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { ChatComponent } from './chat/chat.component';
+import { BoardComponent } from '../board/board.component';
 
 
 @NgModule({
   declarations: [
-    ChatComponent
+    ChatComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
   ],
   exports: [
-    ChatComponent
+    ChatComponent,
   ]
 })
 export class SharedModule { }

@@ -7,10 +7,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'ClientApp';
+  title = 'Kefche';
   constructor(public authService: AuthService) { } 
 
-  isLoggedIn() {
-    return this.authService.isAuthenticated()
+  isLoggedIn(): boolean {
+    return this.authService.isAuthenticated();
   }
 }

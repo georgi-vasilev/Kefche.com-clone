@@ -1,0 +1,18 @@
+.container{
+    padding-left: 20%;
+
+    main {
+        display: grid;
+        grid-template-columns: 200px 200px 200px;
+        grid-gap: 0px;
+    }
+      
+    app-square {
+        border: 1px gray solid;
+        height: 200px;
+    }
+
+    .hasWinner{
+        padding-top: 35%;
+    }
+}
