@@ -2,17 +2,20 @@
     <div class="uk-navbar-left">
         <ul class="uk-navbar-nav">
             <li class="uk-active"><a routerLink="/">Home</a></li>
+            <li class="uk-act"><a routerLink="/tic-tac-toe">Tic Tac Toe</a></li>
         </ul>
     </div>
     <div class="uk-navbar-right">
-        <ul class="uk-navbar-nav" *ngIf="isLoggedIn() == false">
+        <ul class="uk-navbar-nav" *ngIf="!isLoggedIn()">
             <li class="uk-parent"><a routerLink="/login">Login</a></li>
             <li class="uk-parent"><a routerLink="/register">Register</a></li>
         </ul>
-        <ul class="uk-navbar-nav" *ngIf="isLoggedIn() == true">
+        <ul class="uk-navbar-nav" *ngIf="isLoggedIn()">
             <li class="uk-parent"><a routerLink="/logout">Logout</a></li>
         </ul>
     </div>
 </nav>
+<div class="col-md-4">
+    <app-chat *ngIf="isLoggedIn()"></app-chat>
+</div>
 <router-outlet></router-outlet>
-<app-chat></app-chat>
