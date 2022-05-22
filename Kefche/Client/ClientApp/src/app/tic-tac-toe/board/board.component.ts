@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SignalRService as SignalRService } from 'src/app/services/SignalR/signalr.service';
 
 @Component({
   selector: 'app-board',
@@ -6,14 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
-  squares: string[];
-  xIsNext: boolean;
-  winner: string | null;
+  squares!: string[];
+  xIsNext!: boolean;
+  winner!: string | null;
 
-  constructor() {}
+  constructor(public signalR: SignalRService) {}
 
   ngOnInit() {
     this.newGame();
+    this.signalR.connect();
   }
 
   newGame() {
@@ -21,7 +23,7 @@ export class BoardComponent implements OnInit {
     this.winner = null;
     this.xIsNext = true;
   }
-
+  
   get player() {
     return this.xIsNext ? 'X' : 'O';
   }

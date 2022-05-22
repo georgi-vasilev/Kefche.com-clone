@@ -5,7 +5,7 @@ import { NgModule } from '@angular/core';
 import { RegisterComponent } from './user/register/register.component';
 import { RouterModule, Routes } from '@angular/router';
 import { LogoutComponent } from './user/logout/logout.component';
-import { TicTacToeComponent } from './tic-tac-toe/tic-tac-toe.component';
+import { TicTacToeComponent } from './tic-tac-toe/component/tic-tac-toe.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
