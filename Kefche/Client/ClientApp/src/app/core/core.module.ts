@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { NavigationComponent } from './navigation/navigation.component';
 import { NgModule } from '@angular/core';
-import { BoardComponent } from '../board/board.component';
-import { SquareComponent } from '../square/square.component';
+import { BoardComponent } from '../tic-tac-toe/board/board.component';
+import { SquareComponent } from '../tic-tac-toe/square/square.component';
 
 @NgModule({
   declarations: [

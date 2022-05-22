@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 
 import { ChatComponent } from './chat/chat.component';
-import { BoardComponent } from '../board/board.component';
+import { BoardComponent } from '../tic-tac-toe/board/board.component';
 
 
 @NgModule({

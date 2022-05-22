@@ -15,7 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './user/logout/logout.component';
-import { TicTacToeComponent } from './tic-tac-toe/tic-tac-toe.component';
+import { TicTacToeComponent } from './tic-tac-toe/component/tic-tac-toe.component';
 
 @NgModule({
   declarations: [	

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { SignalRService } from '../../services/signalr.service';
+import { SignalRChatService } from '../../services/SignalR/signalrchat.service';
 
 @Component({
   selector: 'app-chat',
@@ -9,7 +9,7 @@ import { SignalRService } from '../../services/signalr.service';
 export class ChatComponent implements OnInit {
   text: string = "";
 
-  constructor(public signalR: SignalRService) { }
+  constructor(public signalR: SignalRChatService) { }
 
   ngOnInit(): void {
     this.signalR.connect();

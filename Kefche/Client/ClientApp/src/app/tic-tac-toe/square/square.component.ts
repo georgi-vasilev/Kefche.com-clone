@@ -11,6 +11,6 @@ import { Component, Input } from '@angular/core';
 })
 export class SquareComponent  {
 
-  @Input() value: string;
+  @Input() value!: string;
 
 }
