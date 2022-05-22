@@ -1,5 +1,9 @@
 .container{
     padding-left: 20%;
+    display:block;
+    :host {
+        width:80%;
+    }
 
     main {
         display: grid;
