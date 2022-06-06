@@ -12,7 +12,9 @@ const apiUrl = environment.apiUrl;
   providedIn: 'root'
 })
 export class SignalRChatService extends SignalRService{
+  public messages: ChatMessage[] = [];
   static apiUrl : string = `${apiUrl}chat`;
+  protected connectionUrl = `${apiUrl}signalrchat`;
   constructor(http: HttpClient) { 
       super(http)
     }
@@ -49,7 +51,7 @@ export class SignalRChatService extends SignalRService{
       this.messages.push(data);
     })
     this.hubConnection.on("newUserConnected", _ => {
-      console.log("new user connected")
+      console.log("new user connected " + this.hubConnection.connectionId)
     })
   }
 }

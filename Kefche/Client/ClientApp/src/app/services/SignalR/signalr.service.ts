@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
 import { HubConnection, HubConnectionBuilder, LogLevel } from '@microsoft/signalr';
 import { MessagePackHubProtocol } from '@microsoft/signalr-protocol-msgpack';
-import { from } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { ChatMessage } from '../../models/chat-message';
@@ -15,8 +14,8 @@ const apiUrl = environment.apiUrl;
 })
 export abstract class SignalRService {
   protected hubConnection!: signalR.HubConnection;
-  public messages: ChatMessage[] = [];
-  protected connectionUrl = `${apiUrl}signalr`;
+  protected abstract connectionUrl: string;
+  protected inviteUrl = `${apiUrl}invite`;
   protected apiUrl!: string;
 
   constructor(
@@ -40,5 +39,10 @@ export abstract class SignalRService {
     this.hubConnection.start()
       .then(() => console.log('connection started'))
       .catch((err) => console.log('error while establishing signalR connection: ' + err))
+  }
+
+  public generateInvite(){
+    var result = this.http.post(this.inviteUrl, {connectionId: this.hubConnection.connectionId});
+    console.log("generate invite sent to controller" + result);
   }
 }

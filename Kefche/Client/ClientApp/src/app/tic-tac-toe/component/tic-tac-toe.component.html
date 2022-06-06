@@ -1,1 +1,6 @@
+<button class="btn btn-primary" (click)="getInviteLink(userinput)">Get link</button> 
+<input type="text" value="" #userinput [readonly]="true" style="width: 300px;">
+<button (click)="copyInputMessage(userinput)" value="click to copy" >Copy</button>
+<input type="text" value="" #accept style="width: 300px;">
+<button (click)="acceptInvite(accept)" value="click to copy" >Accept</button>
 <app-board></app-board>
