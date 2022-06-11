@@ -16,14 +16,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HomeComponent } from './home/home.component';
 import { LogoutComponent } from './user/logout/logout.component';
 import { TicTacToeComponent } from './tic-tac-toe/component/tic-tac-toe.component';
+import { NgxChessBoardModule } from 'ngx-chess-board';
+import { ChessComponent } from './chess/chess.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [
     AppComponent,
     HomeComponent,
     LogoutComponent,
-      TicTacToeComponent
-   ],
+    TicTacToeComponent,
+    ChessComponent
+  ],
   imports: [
     AppRoutingModule,
     BrowserModule,
@@ -34,6 +37,7 @@ import { TicTacToeComponent } from './tic-tac-toe/component/tic-tac-toe.componen
     SharedModule,
     ToastrModule.forRoot(),
     UserModule,
+    NgxChessBoardModule,
   ],
   providers: [
     AuthService,

@@ -3,6 +3,7 @@
         <ul class="uk-navbar-nav">
             <li class="uk-active"><a routerLink="/">Home</a></li>
             <li class="uk-act"><a routerLink="/tic-tac-toe">Tic Tac Toe</a></li>
+            <li class="uk-act"><a routerLink="/chess">Chess</a></li>
         </ul>
     </div>
     <div class="uk-navbar-right">
@@ -15,7 +16,11 @@
         </ul>
     </div>
 </nav>
-<div class="col-md-4">
-    <app-chat *ngIf="isLoggedIn()"></app-chat>
+<div class="row">
+    <div class="col-sm-1" *ngIf="isLoggedIn()">
+        <app-chat></app-chat>
+    </div>
+    <div class="col">
+        <router-outlet></router-outlet>
+    </div>
 </div>
-<router-outlet></router-outlet>
