@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <ngx-chess-board #board [size]="600" [showLastMove]="true" [showLegalMoves]="true"
+                (moveChange)="onMoveChange($event)"></ngx-chess-board>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="buttons">
+                        <button type="button" class="btn btn-primary" (click)="reset()">Reset game</button>
+                        <button type="button" class="btn btn-info" (click)="undoLastMove()">Undo move</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm">
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Player</th>
+                                <th scope="col">Move</th>
+                                <th scope="col">Piece</th>
+                            </tr>
+                        </thead>
+                        <tbody *ngFor="let m of moveHistory; index as i">
+                            <td>{{m.color}}</td>
+                            <td>{{m.move}}</td>
+                            <td>{{m.piece}}</td>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
