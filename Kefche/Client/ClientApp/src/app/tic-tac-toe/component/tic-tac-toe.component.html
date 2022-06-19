@@ -1,1 +1,20 @@
-<app-board></app-board>
+<div class="container">
+    <div>
+        <div class="row">
+            <div class="col-lg-6"> </div>
+            <div class="col-md-auto">
+                <button class="btn btn-primary" (click)="getInviteLink(userinput)">Get link</button>
+                <input type="text" value="" #userinput [readonly]="true" style="width: 300px;">
+                <button (click)="copyInputMessage(userinput)" value="click to copy">Copy</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6"></div>
+            <div class="col-md-auto">
+                <input type="text" value="" #accept style="width: 300px;">
+                <button (click)="acceptInvite(accept)" value="click to copy">Accept</button>
+            </div>
+        </div>
+    </div>
+    <app-board></app-board>
+</div>

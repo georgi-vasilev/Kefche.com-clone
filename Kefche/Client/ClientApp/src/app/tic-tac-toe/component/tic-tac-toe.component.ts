@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { SignalRTTTService } from 'src/app/services/SignalR/signalrtictactoe.service';
+import { Session } from 'src/app/models/session';
 
 @Component({
   selector: 'app-tic-tac-toe',
@@ -7,9 +9,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TicTacToeComponent implements OnInit {
 
-  constructor() { }
+  constructor(public signalR: SignalRTTTService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.signalR.connect();
   }
 
+  getInviteLink(inputElement: any) {
+    this.signalR.getInviteLink()
+    .subscribe((data: Session) => 
+    {
+      inputElement.value = data.sessionId;
+      SignalRTTTService.session = data;
+    });
+  }
+
+  copyInputMessage(inputElement: any){
+    inputElement.select();
+    document.execCommand('copy');
+    inputElement.setSelectionRange(0, 0);
+  }
+
+  acceptInvite(inputElement: any){
+    var guid = inputElement.value;
+    this.signalR.acceptInviteLink(guid)
+    .subscribe((data: Session) => 
+    {
+      SignalRTTTService.session = data;
+    });
+  }
 }

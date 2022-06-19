@@ -67,7 +67,8 @@ namespace Kefche
                 .UseEndpoints(endpoints =>
                 {
                     endpoints.MapControllers();
-                    endpoints.MapHub<ChatHub>("/signalr");
+                    endpoints.MapHub<ChatHub>("/signalrchat");
+                    endpoints.MapHub<TTTHub>("/signalrttt");
                 }).ApplyMigrations();
         }
     }
