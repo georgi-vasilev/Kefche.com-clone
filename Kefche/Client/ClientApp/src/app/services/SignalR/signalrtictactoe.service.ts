@@ -2,40 +2,37 @@ import { SignalRService } from './signalr.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { from } from 'rxjs';
-import { tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { Invite } from 'src/app/models/invite';
 import { TurnInfo } from 'src/app/models/turn-info';
-import { FormGroupDirective } from '@angular/forms';
 import { Session } from 'src/app/models/session';
 import { AcceptInvite } from 'src/app/models/acceptInvite';
-import { ChatMessage } from 'src/app/models/chat-message';
-import { BoardComponent } from 'src/app/tic-tac-toe/board/board.component';
 
 const apiUrl = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'
 })
-export class SignalRTTTService extends SignalRService{
+export class SignalRTTTService extends SignalRService {
   protected connectionUrl = `${apiUrl}signalrttt`;
-  public static session? : Session;
+  public static session?: Session;
   public squares!: string[];
   public xIsNext!: boolean;
   public winner!: string | null;
   public peerId!: string;
   connectionId!: string;
   sessionId!: string;
+  private isDisabled = false;
 
-  constructor(http: HttpClient) { 
-      super(http)
-    }
+  constructor(http: HttpClient) {
+    super(http)
+  }
 
   newGame() {
     this.squares = Array(9).fill(null);
     this.winner = null;
     this.xIsNext = true;
-  }  
+  }
   public connect = () => {
     this.startConnection();
     this.addListeners();
@@ -50,9 +47,13 @@ export class SignalRTTTService extends SignalRService{
   }
 
   public makeMove(idx: number) {
+    if(this.isDisabled){
+      return;
+    }
     if (!this.squares[idx]) {
       this.squares.splice(idx, 1, this.player);
       this.xIsNext = !this.xIsNext;
+
       this.sendTurnToHub(idx);
     }
 
@@ -90,6 +91,7 @@ export class SignalRTTTService extends SignalRService{
   public sendTurnToHub(cell: number) {
     var connectionId = this.hubConnection.connectionId ?? "";
     var sessionId = SignalRTTTService?.session?.sessionId ?? "";
+    this.isDisabled = true;
     var promise = this.hubConnection.invoke("SendTurnAsync", new TurnInfo(connectionId, sessionId, cell))
       .then(() => { console.log(`turn ${cell} sent successfully to hub`); })
       .catch((err) => console.log('error while sending a turn to hub: ' + err));
@@ -98,9 +100,19 @@ export class SignalRTTTService extends SignalRService{
   }
 
   private addListeners() {
-    this.hubConnection.on("turnReceivedFromHub", (cell: number) => {
-      this.makeMove(cell);
-      console.log("turn received from API Controller" + cell)
-    })
+    this.hubConnection.on("turnReceivedFromHub", (data: TurnInfo) => {
+      this.fillPreviousPlayerChoice(data.Cell);
+      this.isDisabled = false;
+      console.log("turn received from API Controller" + data.Cell)
+    });
+  }
+
+  public fillPreviousPlayerChoice(idx: number) {
+    if (!this.squares[idx]) {
+      this.squares.splice(idx, 1, this.player);
+      this.xIsNext = !this.xIsNext;
+    }
+
+    this.winner = this.calculateWinner();
   }
 }

@@ -1,7 +1,7 @@
-﻿using System;
-
-namespace Kefche.Models
+﻿namespace Kefche.Models
 {
+    using System;
+
     public class ConnectionIdDTO
     {
         public string ConnectionId { get; set; }
@@ -10,6 +10,7 @@ namespace Kefche.Models
     public class AcceptDTO
     {
         public string ConnectionId { get; set; }
+
         public Guid SessionId { get; set; }
     }
 }

@@ -4,9 +4,12 @@
     .chat {
         overflow-y: scroll;
         height: 500px;
-        width: 500px;
+        width: 400px;
+        .message {
+            word-wrap: break-word;
+        }
     }
-    .invisible{
+    .invisible {
         clear: both;
         visibility: hidden;
     }

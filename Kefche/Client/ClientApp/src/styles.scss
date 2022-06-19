@@ -1,8 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
-form{
+form {
     border: 1px solid black;
     padding: 10% 15%;
     margin-top: 20%;
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

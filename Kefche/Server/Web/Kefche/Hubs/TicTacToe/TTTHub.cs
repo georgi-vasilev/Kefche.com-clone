@@ -14,6 +14,5 @@
 
             await this.Clients.Client(clientId).TurnReceivedFromHub(turn.Cell);
         }
-
     }
 }

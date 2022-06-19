@@ -1,4 +1,3 @@
-import { Invite } from 'src/app/models/invite';
 import { Component, OnInit } from '@angular/core';
 import { SignalRTTTService } from 'src/app/services/SignalR/signalrtictactoe.service';
 import { Session } from 'src/app/models/session';
@@ -36,8 +35,6 @@ export class TicTacToeComponent implements OnInit {
     this.signalR.acceptInviteLink(guid)
     .subscribe((data: Session) => 
     {
-      console.log('Invite accepted ')
-      console.log(data)
       SignalRTTTService.session = data;
     });
   }
