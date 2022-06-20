@@ -16,7 +16,8 @@ export class ChatComponent implements OnInit {
   }
 
   sendMessage(): void {
-    this.signalR.sendMessageToHub(this.text).subscribe({
+    this.signalR.sendMessageToHub(this.text)
+    .subscribe({
       next: _ => this.text = '',
       error: (err) => console.error(err)
     });

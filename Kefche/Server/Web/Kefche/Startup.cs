@@ -2,6 +2,7 @@ namespace Kefche
 {
     using System.Reflection;
     using Hubs;
+    using Kefche.Hubs.Chess;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
@@ -69,6 +70,7 @@ namespace Kefche
                     endpoints.MapControllers();
                     endpoints.MapHub<ChatHub>("/signalrchat");
                     endpoints.MapHub<TTTHub>("/signalrttt");
+                    endpoints.MapHub<ChessHub>("/signalrchess");
                 }).ApplyMigrations();
         }
     }
