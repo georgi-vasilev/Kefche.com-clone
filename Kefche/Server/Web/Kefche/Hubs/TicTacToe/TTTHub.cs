@@ -12,7 +12,7 @@
             var sessionId = Guid.Parse(turn.SessionId);
             var clientId = InviteController.GetSecondPlayerConnectionId(turn.ConnectionId, sessionId);
 
-            await this.Clients.Client(clientId).TurnReceivedFromHub(turn.Cell);
+            await this.Clients.Client(clientId).TurnReceivedFromHub(turn);
         }
     }
 }

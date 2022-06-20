@@ -4,6 +4,6 @@
 
     public interface ITTTHub
     {
-        Task TurnReceivedFromHub(int cell);
+        Task TurnReceivedFromHub(TurnInfo turn);
     }
 }
